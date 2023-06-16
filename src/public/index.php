@@ -1,5 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+use App\PaymentGateway\Paddle\Transaction;
+use Ramsey\Uuid\UuidFactory;
 
-phpinfo();
+require __DIR__ . '/../vendor/autoload.php';
+
+$id = new UuidFactory();
+
+echo $id->uuid4();
+
+$paddleTransaction = new Transaction();
+
+var_dump($paddleTransaction);
