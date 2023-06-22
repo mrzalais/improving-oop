@@ -1,5 +1,5 @@
-/.idea
-/src/vendor
+.idea
+/vendor
 /docker/storage
 .env
 .phpunit.result.cache
