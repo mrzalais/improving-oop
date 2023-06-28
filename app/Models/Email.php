@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Enums\EmailStatus;
 use App\Model;
-use PDO;
 use Symfony\Component\Mime\Address;
 
 class Email extends Model
