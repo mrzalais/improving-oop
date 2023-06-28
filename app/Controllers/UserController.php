@@ -8,7 +8,6 @@ use App\Attributes\Get;
 use App\Attributes\Post;
 use App\Models\Email;
 use App\View;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Address;
 
 class UserController
@@ -19,9 +18,6 @@ class UserController
         return View::make('users/register');
     }
 
-    /**
-     * @throws TransportExceptionInterface
-     */
     #[Post('/users')]
     public function register(): void
     {

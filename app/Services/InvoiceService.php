@@ -4,6 +4,9 @@ declare(strict_types = 1);
 
 namespace App\Services;
 
+use App\Models\Email;
+use Symfony\Component\Mime\Address;
+
 class InvoiceService
 {
     public function __construct(
@@ -24,7 +27,27 @@ class InvoiceService
         }
 
         // 3. send receipt
-        $this->emailService->send($customer, 'receipt');
+
+        $firstName = ' Some customer';
+
+        $text = <<<Body
+Receipt for $firstName,
+Thank you for purchasing
+Body;
+
+        $html = <<<HTMLBody
+<h1 style="text-align: center; color: blue;">Thank you</h1>
+Here is your receipt
+HTMLBody;
+
+
+        (new Email())->queue(
+            new Address('someCustomer@email.com'),
+            new Address('support@example.com', 'Support'),
+            'receipt',
+            $html,
+            $text
+        );
 
         echo 'Invoice has been processed<br />';
 
