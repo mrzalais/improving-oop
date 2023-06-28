@@ -26,7 +26,7 @@ class Email extends Model
         $meta['to']   = $to->toString();
         $meta['from'] = $from->toString();
 
-        $stmt->execute([$subject, EmailStatus::Queue->value, $html, $text, json_encode($meta)]);
+        $stmt->executeStatement([$subject, EmailStatus::Queue->value, $html, $text, json_encode($meta)]);
     }
 
     public function getEmailsByStatus(EmailStatus $status): array
@@ -37,9 +37,7 @@ class Email extends Model
              WHERE status = ?'
         );
 
-        $stmt->execute([$status->value]);
-
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->executeQuery([$status->value])->fetchAllAssociative();
     }
 
     public function markEmailSent(int $id): void
@@ -50,6 +48,6 @@ class Email extends Model
              WHERE id = ?'
         );
 
-        $stmt->execute([EmailStatus::Sent->value, $id]);
+        $stmt->executeStatement([EmailStatus::Sent->value, $id]);
     }
 }

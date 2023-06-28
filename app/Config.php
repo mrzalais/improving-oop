@@ -20,6 +20,8 @@ class Config
                 'user'     => $env['DB_USER'],
                 'pass'     => $env['DB_PASS'],
                 'database' => $env['DB_DATABASE'],
+                'password' => $env['DB_PASS'],
+                'dbname'   => $env['DB_DATABASE'],
                 'driver'   => $env['DB_DRIVER'] ?? 'mysql',
             ],
             'mailer' => [
