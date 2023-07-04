@@ -4,4 +4,3 @@
 /docker/log/cron/*
 .env
 .phpunit.result.cache
-/storage/cache/*
