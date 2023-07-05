@@ -28,13 +28,7 @@ AppFactory::setContainer($container);
 
 $app = AppFactory::create();
 
-$app->get('/', [HomeController::class, 'index']);
-$app->get('/invoices', [InvoiceController::class, 'index']);
-
-$twig = Twig::create(VIEW_PATH, [
-    'cache'       => STORAGE_PATH . '/cache',
-    'auto_reload' => true,
-]);
+$router($app);
 
 $twig->addExtension(new IntlExtension());
 
