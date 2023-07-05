@@ -30,8 +30,6 @@ $app = AppFactory::create();
 
 $router($app);
 
-$twig->addExtension(new IntlExtension());
-
-$app->add(TwigMiddleware::create($app, $twig));
+$app->add(TwigMiddleware::create($app, $container->get(Twig::class)));
 
 $app->run();
