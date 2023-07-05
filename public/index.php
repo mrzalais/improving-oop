@@ -26,12 +26,6 @@ $container = new Container();
 
 AppFactory::setContainer($container);
 
-$container->set(Config::class, create(Config::class)->constructor($_ENV));
-$container->set(EntityManager::class, fn(Config $config) => EntityManager::create(
-    $config->db,
-    ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/../app/Entity'])
-));
-
 $app = AppFactory::create();
 
 $app->get('/', [HomeController::class, 'index']);
