@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Commands\MyCommand;
 use Doctrine\Migrations\Configuration\EntityManager\ExistingEntityManager;
 use Doctrine\Migrations\Configuration\Migration\PhpFile;
 use Doctrine\Migrations\DependencyFactory;
@@ -46,6 +47,7 @@ $commands = [
     new SyncMetadataCommand($dependencyFactory),
     new ListCommand($dependencyFactory),
     new DiffCommand($dependencyFactory),
+    new MyCommand(),
 ];
 
 $application = new Application('App', '1.0');
