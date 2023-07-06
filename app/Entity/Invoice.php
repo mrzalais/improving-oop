@@ -27,8 +27,8 @@ class Invoice
     #[Column, GeneratedValue]
     private int $id;
 
-    #[Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private float $amount;
+    #[Column(type: Types::BIGINT)]
+    private int $amount;
 
     #[Column(name: 'invoice_number')]
     private string $invoiceNumber;
@@ -66,7 +66,7 @@ class Invoice
         return $this->amount;
     }
 
-    public function setAmount(float $amount): Invoice
+    public function setAmount(int $amount): Invoice
     {
         $this->amount = $amount;
 
