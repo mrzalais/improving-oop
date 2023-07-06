@@ -21,6 +21,7 @@ use Doctrine\Migrations\Tools\Console\Command\VersionCommand;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+use Symfony\Component\Console\Application;
 
 $app = require 'bootstrap.php';
 $container = $app->getContainer();
@@ -47,7 +48,10 @@ $commands = [
     new DiffCommand($dependencyFactory),
 ];
 
-ConsoleRunner::run(
-    new SingleManagerProvider($entityManager),
-    $commands
-);
+$application = new Application('App', '1.0');
+
+ConsoleRunner::addCommands($application, new SingleManagerProvider($entityManager));
+
+$application->addCommands($commands);
+
+$application->run();
